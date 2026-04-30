@@ -57,6 +57,7 @@ export default function NotFound() {
       <h1 className="text-3xl font-bold mb-2">Página no encontrada</h1>
       <p className="text-sm mb-6 max-w-sm" style={{ color: 'var(--color-muted)' }}>
         La serie que buscas no existe en esta aplicación.
+        <br/>
         Parece que el canal fue cancelado.
       </p>
 
