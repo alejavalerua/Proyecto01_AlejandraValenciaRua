@@ -40,20 +40,74 @@ export default function Detail() {
     setModalOpen(false)
   }
 
-  if (loading) return (
-    <div className="flex items-center justify-center py-32" role="status" aria-label="Cargando...">
-      <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
-           style={{ borderColor: 'var(--color-accent)', borderTopColor: 'transparent' }} />
-    </div>
-  )
+  if (loading) {
+    return (
+      <div className="min-h-[70vh] flex flex-col items-center justify-center py-20 px-4">
+        <div className="flex flex-col items-center gap-6">
+          {/* Spinner grande */}
+          <div
+            className="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin"
+            style={{
+              borderColor: 'var(--color-accent)',
+              borderTopColor: 'transparent'
+            }}
+          />
 
-  if (error) return (
-    <div className="text-center py-32">
-      <p style={{ color: 'var(--color-muted)' }}>{error}</p>
-      <Link to="/explore" className="mt-4 inline-block text-sm underline"
-            style={{ color: 'var(--color-accent)' }}>← Volver</Link>
-    </div>
-  )
+          {/* Mensajito */}
+          <div className="text-center">
+            <p className="text-lg font-medium mb-1" style={{ color: 'var(--color-text)' }}>
+              Cargando información de la serie...
+            </p>
+            <p className="text-sm" style={{ color: 'var(--color-muted)' }}>
+              Obteniendo detalles desde TVMaze
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-[70vh] flex flex-col items-center justify-center py-20 px-4 text-center">
+        <div className="mb-8 text-6xl">⚠️</div>
+        <h2 className="text-2xl font-bold mb-3" style={{ color: 'var(--color-accent)' }}>
+          No se pudo cargar la serie
+        </h2>
+        <p className="max-w-md mb-8" style={{ color: 'var(--color-muted)' }}>
+          {error || "Hubo un problema al obtener la información de esta serie."}
+        </p>
+        <div className="flex gap-4">
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-3 rounded-xl font-semibold text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'white' }}
+          >
+            Reintentar
+          </button>
+          <Link
+            to="/explore"
+            className="px-6 py-3 rounded-xl font-semibold text-sm border transition-colors"
+            style={{
+              borderColor: 'var(--color-border)',
+              color: 'var(--color-muted)'
+            }}
+          >
+            Volver a explorar
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  // Si no hay serie
+  if (!show) {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center text-center">
+        <p style={{ color: 'var(--color-muted)' }}>Serie no encontrada.</p>
+      </div>
+    )
+  }
 
   const fav = isFavorite(show?.id)
   const cleanSummary = show?.summary?.replace(/<[^>]+>/g, '') || 'Sin descripción disponible.'
@@ -62,17 +116,17 @@ export default function Detail() {
     <>
       <div className="max-w-4xl mx-auto px-4 py-8">
         <Link to="/explore" className="text-sm hover:underline mb-6 inline-block"
-              style={{ color: 'var(--color-muted)' }}>← Volver a explorar</Link>
+          style={{ color: 'var(--color-muted)' }}>← Volver a explorar</Link>
 
         <div className="flex flex-col md:flex-row gap-8">
           {/* Imagen */}
           <div className="flex-shrink-0 w-full md:w-64">
             {show.image?.original ? (
               <img src={show.image.original} alt={`Póster de ${show.name}`}
-                   className="w-full rounded-2xl" />
+                className="w-full rounded-2xl" />
             ) : (
               <div className="w-full aspect-[2/3] rounded-2xl flex items-center justify-center"
-                   style={{ backgroundColor: 'var(--color-card)' }}>
+                style={{ backgroundColor: 'var(--color-card)' }}>
                 <span style={{ color: 'var(--color-border)' }}>Sin imagen</span>
               </div>
             )}
@@ -104,8 +158,10 @@ export default function Detail() {
             <div className="flex flex-wrap gap-2 mb-4">
               {show.genres?.map(g => (
                 <span key={g} className="text-xs font-mono px-2 py-1 rounded"
-                      style={{ backgroundColor: 'rgba(139,26,58,0.2)', color: 'var(--color-accent)',
-                               border: '1px solid var(--color-primary)' }}>
+                  style={{
+                    backgroundColor: 'rgba(139,26,58,0.2)', color: 'var(--color-accent)',
+                    border: '1px solid var(--color-primary)'
+                  }}>
                   {g}
                 </span>
               ))}
@@ -116,13 +172,13 @@ export default function Detail() {
             </p>
 
             <button onClick={handleFavToggle}
-                    aria-label={fav ? `Quitar ${show.name} de favoritos` : `Agregar ${show.name} a favoritos`}
-                    className="px-5 py-2 rounded-xl text-sm font-semibold transition-opacity hover:opacity-80"
-                    style={{
-                      backgroundColor: fav ? 'transparent' : 'var(--color-accent)',
-                      color: fav ? 'var(--color-muted)' : 'white',
-                      border: fav ? '1px solid var(--color-border)' : 'none'
-                    }}>
+              aria-label={fav ? `Quitar ${show.name} de favoritos` : `Agregar ${show.name} a favoritos`}
+              className="px-5 py-2 rounded-xl text-sm font-semibold transition-opacity hover:opacity-80"
+              style={{
+                backgroundColor: fav ? 'transparent' : 'var(--color-accent)',
+                color: fav ? 'var(--color-muted)' : 'white',
+                border: fav ? '1px solid var(--color-border)' : 'none'
+              }}>
               {fav ? '♥ En favoritos' : '♡ Agregar a favoritos'}
             </button>
           </div>

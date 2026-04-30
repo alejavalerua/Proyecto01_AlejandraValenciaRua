@@ -1,17 +1,52 @@
-export default function LoadingGrid({ count = 12 }) {
+// src/components/LoadingGrid.jsx
+export default function LoadingGrid({ count = 12, title = "Cargando series..." }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
-         aria-label="Cargando series..." role="status">
-      {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="rounded-xl overflow-hidden animate-pulse"
-             style={{ backgroundColor: 'var(--color-card)', border: '1px solid var(--color-border)' }}>
-          <div className="aspect-[2/3]" style={{ backgroundColor: 'var(--color-surface)' }} />
-          <div className="p-3 space-y-2">
-            <div className="h-3 rounded" style={{ backgroundColor: 'var(--color-surface)', width: '80%' }} />
-            <div className="h-2 rounded" style={{ backgroundColor: 'var(--color-surface)', width: '60%' }} />
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      {/* Título de carga */}
+      <div className="flex items-center gap-3 mb-8">
+        <div
+          className="w-6 h-6 rounded-full border-2 border-t-transparent animate-spin"
+          style={{
+            borderColor: 'var(--color-accent)',
+            borderTopColor: 'transparent'
+          }}
+        />
+        <p className="text-lg font-medium" style={{ color: 'var(--color-muted)' }}>
+          {title}
+        </p>
+      </div>
+
+      {/* Grid de skeletons */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        {Array.from({ length: count }).map((_, i) => (
+          <div
+            key={i}
+            className="rounded-2xl overflow-hidden bg-[var(--color-card)] border border-[var(--color-border)] animate-pulse"
+          >
+            {/* Imagen skeleton */}
+            <div
+              className="aspect-[2/3] w-full"
+              style={{ backgroundColor: 'var(--color-surface)' }}
+            />
+
+            {/* Info skeleton */}
+            <div className="p-4 space-y-3">
+              <div
+                className="h-4 rounded w-4/5"
+                style={{ backgroundColor: 'var(--color-surface)' }}
+              />
+              <div
+                className="h-3 rounded w-3/5"
+                style={{ backgroundColor: 'var(--color-surface)' }}
+              />
+              <div
+                className="h-5 rounded w-2/5 mt-4"
+                style={{ backgroundColor: 'rgba(139, 26, 58, 0.3)' }}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
