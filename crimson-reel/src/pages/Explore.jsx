@@ -1,4 +1,3 @@
-// src/pages/Explore.jsx
 import { useState, useEffect, useMemo } from 'react'
 import ShowCard from '../components/ShowCard'
 import LoadingGrid from '../components/LoadingGrid'
@@ -38,7 +37,7 @@ export default function Explore() {
             })
     }, [])
 
-    // Géneros e idiomas dinámicos
+    // Géneros e idiomas disponibles para los filtros
     const availableGenres = useMemo(() => {
         const set = new Set()
         shows.forEach(show => show.genres?.forEach(g => g && set.add(g)))
@@ -107,9 +106,6 @@ export default function Explore() {
             </div>
         )
     }
-
-    
-    // ==================== CONTENIDO PRINCIPAL ====================
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">

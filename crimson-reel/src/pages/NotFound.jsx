@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 
-// Canvas con efecto de estática de TV
 function StaticTV() {
   const canvasRef = useRef(null)
 
@@ -14,11 +13,11 @@ function StaticTV() {
       const imageData = ctx.createImageData(canvas.width, canvas.height)
       for (let i = 0; i < imageData.data.length; i += 4) {
         const val = Math.random() > 0.5 ? 255 : 0
-        const tint = Math.random() > 0.95 ? 192 : 0  // tinte vino ocasional
-        imageData.data[i]     = val > 0 ? tint : 0    // R
-        imageData.data[i + 1] = 0                       // G
-        imageData.data[i + 2] = val > 0 ? 0 : 0        // B
-        imageData.data[i + 3] = Math.random() * 80     // A (semitransparente)
+        const tint = Math.random() > 0.95 ? 192 : 0
+        imageData.data[i]     = val > 0 ? tint : 0
+        imageData.data[i + 1] = 0                 
+        imageData.data[i + 2] = val > 0 ? 0 : 0      
+        imageData.data[i + 3] = Math.random() * 80   
       }
       ctx.putImageData(imageData, 0, 0)
       animId = requestAnimationFrame(draw)
@@ -39,7 +38,6 @@ export default function NotFound() {
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 text-center">
 
-      {/* TV con estática */}
       <div className="relative w-64 h-44 rounded-2xl mb-8 overflow-hidden flex items-center justify-center"
            style={{ backgroundColor: '#0A0608', border: '3px solid var(--color-border)',
                     boxShadow: '0 0 40px rgba(192,57,90,0.2)' }}>

@@ -1,4 +1,3 @@
-// src/components/SendModal.jsx
 import { useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -37,7 +36,6 @@ export default function SendModal({ isOpen, onConfirm, onCancel, userName = "" }
         >
             <div className="bg-[#1E1014] border border-[#3D1E27] rounded-3xl p-8 mx-4 shadow-2xl">
 
-                {/* Icono */}
                 <div className="flex justify-center mb-6">
                     <div className="w-16 h-16 rounded-2xl bg-[#C0395A]/20 flex items-center justify-center text-5xl">
                         ✉️

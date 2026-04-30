@@ -1,8 +1,7 @@
-// src/components/LoadingGrid.jsx
 export default function LoadingGrid({ count = 12, title = "Cargando series..." }) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      {/* Título de carga */}
+      
       <div className="flex items-center gap-3 mb-8">
         <div
           className="w-6 h-6 rounded-full border-2 border-t-transparent animate-spin"
@@ -16,20 +15,18 @@ export default function LoadingGrid({ count = 12, title = "Cargando series..." }
         </p>
       </div>
 
-      {/* Grid de skeletons */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
         {Array.from({ length: count }).map((_, i) => (
           <div
             key={i}
             className="rounded-2xl overflow-hidden bg-[var(--color-card)] border border-[var(--color-border)] animate-pulse"
           >
-            {/* Imagen skeleton */}
+            
             <div
               className="aspect-[2/3] w-full"
               style={{ backgroundColor: 'var(--color-surface)' }}
             />
 
-            {/* Info skeleton */}
             <div className="p-4 space-y-3">
               <div
                 className="h-4 rounded w-4/5"

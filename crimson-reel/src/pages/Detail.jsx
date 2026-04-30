@@ -53,7 +53,6 @@ export default function Detail() {
             }}
           />
 
-          {/* Mensajito */}
           <div className="text-center">
             <p className="text-lg font-medium mb-1" style={{ color: 'var(--color-text)' }}>
               Cargando información de la serie...
@@ -100,7 +99,6 @@ export default function Detail() {
     )
   }
 
-  // Si no hay serie
   if (!show) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center text-center">
@@ -132,7 +130,6 @@ export default function Detail() {
             )}
           </div>
 
-          {/* Info */}
           <div className="flex-1">
             <h1 className="text-4xl font-bold mb-1">{show.name}</h1>
             {show.rating?.average && (

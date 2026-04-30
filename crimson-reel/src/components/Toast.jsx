@@ -1,4 +1,3 @@
-// src/components/Toast.jsx
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -73,10 +72,8 @@ export default function Toast({ message, type = 'info', onClose }) {
           {config.icon}
         </span>
 
-        {/* Mensaje */}
         <span style={{ flex: 1 }}>{message}</span>
 
-        {/* Botón cerrar */}
         <button
           onClick={onClose}
           aria-label="Cerrar notificación"

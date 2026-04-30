@@ -1,4 +1,3 @@
-// src/pages/Contact.jsx
 import { useState } from 'react'
 import SendModal from '../components/SendModal'
 import { useToast } from '../hooks/useToast'
@@ -55,7 +54,6 @@ export default function Contact() {
     setShowConfirmModal(false)
     setIsSubmitting(true)
 
-    // Simulación de envío (puedes reemplazar esto por una API real después)
     setTimeout(() => {
       showToast('¡Mensaje enviado correctamente! Gracias por contactarnos.', 'success')
       setForm(initialState)
@@ -79,6 +77,7 @@ export default function Contact() {
         </p>
 
         <form onSubmit={handleSubmit} noValidate className="space-y-6">
+          
           {/* Nombre */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-1">Nombre</label>

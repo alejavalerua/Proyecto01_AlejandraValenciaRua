@@ -1,4 +1,3 @@
-// src/components/ConfirmModal.jsx
 import { useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
