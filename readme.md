@@ -3,7 +3,7 @@
 
 Una aplicación web para descubrir y explorar series de televisión, construida con React y Tailwind.
 
-![Aplicación en Vercel de CrimsonReel](https://crimson-reel-two.vercel.app/)
+**Aplicación en Vercel:** https://crimson-reel-two.vercel.app/
 
 ## ✨ Características Principales
 
